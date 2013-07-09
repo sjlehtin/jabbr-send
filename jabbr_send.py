@@ -16,7 +16,7 @@ Options:
 """.format("jabbr_send.py")
 
 __author__ = "sjl@ssh.com"
-__license__ = "BSD" # See LICENSE.
+__license__ = "MIT" # See LICENSE.
 __version__ = "0.1"
 
 import requests
