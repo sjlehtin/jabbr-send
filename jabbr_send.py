@@ -1,5 +1,23 @@
+__doc__ = """Send messages to JabbR (https://github.com/JabbR/JabbR) chatrooms.
+
+Usage:
+    {0} [options] -U <username> -w <password> <url> <room> <message>
+    {0} [options] (-h | --help)
+    {0} [options] (-V | --version)
+
+Options:
+    -U <username>, --username=<username>
+                     Username to connect as. Mandatory.
+    -w <password>, --password=<password>
+                     Password used to authenticate. Mandatory.
+    -h, --help       Show this help and exit.
+    -V, --version    Print version.
+    -D, --debug      Enable debug logging.
+""".format("jabbr_send.py")
+
 __author__ = "sjl@ssh.com"
 __license__ = "BSD" # See LICENSE.
+__version__ = "0.1"
 
 import requests
 import time
@@ -121,5 +139,13 @@ class Client(object):
 
 
 if __name__ == "__main__":
+    from docopt import docopt
+
+    opts = docopt(__doc__, version="JabbR Send {0}".format(__version__))
+
     c = Client()
-    logging.basicConfig(level=logging.DEBUG)
+    if opts['--debug']:
+        logging.basicConfig(level=logging.DEBUG)
+    c.connect(opts['<url>'], opts['--username'], opts['--password'],
+              room=opts['<room>'])
+    c.send(opts['<message>'])
