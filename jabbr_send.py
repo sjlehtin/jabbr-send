@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 __doc__ = """Send messages to JabbR (https://github.com/JabbR/JabbR) chatrooms.
 
 Usage:
@@ -110,7 +111,7 @@ class Client(object):
         connection persists, and how sending behaves after that.
 
         Messages can only be sent to rooms the account has subscribed to,
-        and this script does not do that, at least not yet.
+        and this script does not automatically do that, at least not yet.
         """
         if not room:
             room = self.room
